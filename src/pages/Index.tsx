@@ -477,6 +477,29 @@ export default function Index() {
         </div>
       </section>
 
+      {/* BRANDS */}
+      <section className="py-12 border-t border-border bg-background">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
+          <div className="flex items-center gap-3 mb-8 justify-center">
+            <div className="h-px w-8 bg-primary" />
+            <span className="font-mono text-xs text-primary tracking-widest uppercase">Бренды партнёров</span>
+            <div className="h-px w-8 bg-primary" />
+          </div>
+          <div className="flex flex-wrap justify-center items-center gap-4 sm:gap-6">
+            {["Strahl", "SKF", "FAG", "Bonfiglioli", "NMRW"].map((brand) => (
+              <div
+                key={brand}
+                className="border border-border bg-card px-8 py-4 hover:border-primary/50 hover:bg-primary/5 transition-all duration-200 group"
+              >
+                <span className="font-oswald text-lg font-bold uppercase tracking-widest text-muted-foreground group-hover:text-foreground transition-colors">
+                  {brand}
+                </span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* DELIVERY */}
       <section
         id="delivery"
