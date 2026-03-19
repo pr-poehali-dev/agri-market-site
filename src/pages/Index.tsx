@@ -138,9 +138,9 @@ export default function Index() {
             </nav>
 
             <div className="hidden md:flex items-center gap-3">
-              <a href="tel:+78001234567" className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors">
+              <a href="tel:+79092148292" className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors">
                 <Icon name="Phone" size={14} />
-                <span className="font-mono">8 800 123-45-67</span>
+                <span className="font-mono">+7 909 214-82-92</span>
               </a>
               <button
                 onClick={() => scrollTo("contacts")}
@@ -549,10 +549,10 @@ export default function Index() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
             <div className="space-y-4">
               {[
-                { icon: "Phone", label: "Отдел продаж", value: "+7 (800) 123-45-67", sub: "Бесплатно по России" },
-                { icon: "Wrench", label: "Техподдержка", value: "+7 (861) 234-56-78", sub: "Пн–Пт 8:00–18:00" },
-                { icon: "Mail", label: "Email", value: "sales@selkhozmarket.ru", sub: "Ответ в течение 2 часов" },
-                { icon: "MapPin", label: "Склад и офис", value: "г. Краснодар, ул. Промышленная, 15", sub: "Пн–Пт 8:00–18:00, Сб 9:00–15:00" },
+                { icon: "Phone", label: "Отдел продаж", value: "+7 909 214-82-92", sub: "Пн–Пт 8:00–18:00" },
+                { icon: "Phone", label: "Дополнительный", value: "+7 900 301-89-33", sub: "Пн–Пт 8:00–18:00" },
+                { icon: "Mail", label: "Email", value: "selxozmarket36@mail.ru", sub: "Ответ в течение 2 часов" },
+                { icon: "MapPin", label: "Офис", value: "г. Воронеж, пр. Патриотов, 63 корп. 2", sub: "Пн–Пт 8:00–18:00" },
               ].map((item) => (
                 <div key={item.label} className="flex items-start gap-4 border border-border bg-background p-4">
                   <div className="w-10 h-10 bg-primary/10 border border-primary/20 flex items-center justify-center flex-shrink-0">
