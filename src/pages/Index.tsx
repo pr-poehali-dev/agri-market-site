@@ -457,7 +457,7 @@ export default function Index() {
               {[
                 { icon: "Award", title: "Сертифицированные поставки", desc: "Работаем только с проверенными производителями. Документы на все позиции." },
                 { icon: "Users", title: "Технические консультации", desc: "Инженеры с опытом подбора оборудования для элеваторов и АПК." },
-                { icon: "BarChart2", title: "Склад в наличии", desc: "Более 5000 позиций на складе в Краснодаре для оперативной отгрузки." },
+                { icon: "BarChart2", title: "Склад в наличии", desc: "Большой ассортимент позиций на складе в Краснодаре для оперативной отгрузки." },
                 { icon: "RefreshCw", title: "Гарантия и возврат", desc: "12 месяцев гарантии. Обмен и возврат брака в течение 30 дней." },
               ].map((item) => (
                 <div key={item.title} className="border border-border bg-background p-5 transition-all duration-200 hover:-translate-y-0.5 hover:border-primary/40">
