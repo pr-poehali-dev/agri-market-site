@@ -88,10 +88,48 @@ const SECTIONS = ["Каталог", "О компании", "Доставка", "
 type ActiveSection = "catalog" | "about" | "delivery" | "contacts";
 const sectionKeys: ActiveSection[] = ["catalog", "about", "delivery", "contacts"];
 
+const SEND_URL = "https://functions.poehali.dev/081c3efa-2058-4ed1-993b-baeed7945302";
+
 export default function Index() {
   const [activeSection, setActiveSection] = useState<ActiveSection>("catalog");
   const [activeCategory, setActiveCategory] = useState<number | null>(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  const [form, setForm] = useState({ company: "", contact: "", phone: "", email: "", message: "" });
+  const [sending, setSending] = useState(false);
+  const [sent, setSent] = useState(false);
+  const [sendError, setSendError] = useState("");
+
+  const handleInput = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+  };
+
+  const handleSubmit = async () => {
+    if (!form.contact || !form.phone) {
+      setSendError("Заполните имя и телефон");
+      return;
+    }
+    setSending(true);
+    setSendError("");
+    try {
+      const res = await fetch(SEND_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+      });
+      const data = await res.json();
+      if (data.ok) {
+        setSent(true);
+        setForm({ company: "", contact: "", phone: "", email: "", message: "" });
+      } else {
+        setSendError("Ошибка отправки, попробуйте ещё раз");
+      }
+    } catch {
+      setSendError("Ошибка соединения, попробуйте ещё раз");
+    } finally {
+      setSending(false);
+    }
+  };
 
   const scrollTo = (section: ActiveSection) => {
     setActiveSection(section);
@@ -573,6 +611,23 @@ export default function Index() {
                 <span className="font-oswald text-sm font-semibold uppercase tracking-wider">Запрос коммерческого предложения</span>
               </div>
 
+              {sent ? (
+                <div className="flex flex-col items-center justify-center py-12 gap-4">
+                  <div className="w-14 h-14 bg-primary/10 border border-primary/30 flex items-center justify-center">
+                    <Icon name="CheckCircle" size={28} className="text-primary" />
+                  </div>
+                  <div className="text-center">
+                    <div className="font-oswald text-lg font-bold uppercase text-foreground">Заявка отправлена!</div>
+                    <div className="font-ibm text-sm text-muted-foreground mt-1">Свяжемся с вами в течение 2 рабочих часов</div>
+                  </div>
+                  <button
+                    onClick={() => setSent(false)}
+                    className="font-mono text-xs text-primary hover:underline uppercase tracking-wider"
+                  >
+                    Отправить ещё одну заявку
+                  </button>
+                </div>
+              ) : (
               <div className="space-y-4">
                 <div>
                   <label className="font-mono text-xs text-muted-foreground uppercase tracking-wider block mb-1.5">
@@ -580,16 +635,22 @@ export default function Index() {
                   </label>
                   <input
                     type="text"
+                    name="company"
+                    value={form.company}
+                    onChange={handleInput}
                     placeholder="ООО «Агрохолдинг»"
                     className="w-full bg-card border border-border px-4 py-3 font-ibm text-sm text-foreground placeholder:text-muted-foreground/50 focus:outline-none focus:border-primary/60 transition-colors"
                   />
                 </div>
                 <div>
                   <label className="font-mono text-xs text-muted-foreground uppercase tracking-wider block mb-1.5">
-                    Контактное лицо
+                    Контактное лицо <span className="text-primary">*</span>
                   </label>
                   <input
                     type="text"
+                    name="contact"
+                    value={form.contact}
+                    onChange={handleInput}
                     placeholder="Иванов Иван Иванович"
                     className="w-full bg-card border border-border px-4 py-3 font-ibm text-sm text-foreground placeholder:text-muted-foreground/50 focus:outline-none focus:border-primary/60 transition-colors"
                   />
@@ -597,10 +658,13 @@ export default function Index() {
                 <div className="grid grid-cols-2 gap-3">
                   <div>
                     <label className="font-mono text-xs text-muted-foreground uppercase tracking-wider block mb-1.5">
-                      Телефон
+                      Телефон <span className="text-primary">*</span>
                     </label>
                     <input
                       type="tel"
+                      name="phone"
+                      value={form.phone}
+                      onChange={handleInput}
                       placeholder="+7 (___) ___-__-__"
                       className="w-full bg-card border border-border px-4 py-3 font-ibm text-sm text-foreground placeholder:text-muted-foreground/50 focus:outline-none focus:border-primary/60 transition-colors"
                     />
@@ -611,6 +675,9 @@ export default function Index() {
                     </label>
                     <input
                       type="email"
+                      name="email"
+                      value={form.email}
+                      onChange={handleInput}
                       placeholder="email@company.ru"
                       className="w-full bg-card border border-border px-4 py-3 font-ibm text-sm text-foreground placeholder:text-muted-foreground/50 focus:outline-none focus:border-primary/60 transition-colors"
                     />
@@ -622,18 +689,29 @@ export default function Index() {
                   </label>
                   <textarea
                     rows={4}
+                    name="message"
+                    value={form.message}
+                    onChange={handleInput}
                     placeholder="Опишите необходимое оборудование, укажите количество и технические параметры..."
                     className="w-full bg-card border border-border px-4 py-3 font-ibm text-sm text-foreground placeholder:text-muted-foreground/50 focus:outline-none focus:border-primary/60 transition-colors resize-none"
                   />
                 </div>
-                <button className="w-full flex items-center justify-center gap-2 py-3 bg-primary text-primary-foreground font-oswald tracking-widest uppercase hover:bg-amber-500 transition-all text-sm">
-                  <Icon name="Send" size={14} />
-                  Отправить запрос
+                {sendError && (
+                  <p className="font-mono text-xs text-red-400">{sendError}</p>
+                )}
+                <button
+                  onClick={handleSubmit}
+                  disabled={sending}
+                  className="w-full flex items-center justify-center gap-2 py-3 bg-primary text-primary-foreground font-oswald tracking-widest uppercase hover:bg-amber-500 transition-all text-sm disabled:opacity-60 disabled:cursor-not-allowed"
+                >
+                  <Icon name={sending ? "Loader" : "Send"} size={14} className={sending ? "animate-spin" : ""} />
+                  {sending ? "Отправляем..." : "Отправить запрос"}
                 </button>
                 <p className="font-mono text-[10px] text-muted-foreground text-center">
                   Ответим в течение 2 рабочих часов
                 </p>
               </div>
+              )}
             </div>
           </div>
         </div>
