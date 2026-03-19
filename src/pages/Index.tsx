@@ -107,18 +107,12 @@ export default function Index() {
       <header className="fixed top-0 left-0 right-0 z-50 border-b border-border bg-background/95 backdrop-blur-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <div className="flex items-center justify-between h-16">
-            <div className="flex items-center gap-3">
-              <div className="w-8 h-8 bg-primary flex items-center justify-center">
-                <Icon name="Wheat" size={16} className="text-primary-foreground" />
-              </div>
-              <div>
-                <div className="font-oswald text-lg font-bold tracking-wider text-foreground leading-none">
-                  СЕЛЬХОЗМАРКЕТ
-                </div>
-                <div className="font-mono text-[9px] text-muted-foreground tracking-widest uppercase leading-none mt-0.5">
-                  агро-индустриальное оборудование
-                </div>
-              </div>
+            <div className="flex items-center gap-2">
+              <img
+                src="https://cdn.poehali.dev/projects/5d86bdf0-caa1-415e-848e-18fef434f4ad/bucket/87f1421d-7692-4f08-bbf7-8eb2f53e964b.png"
+                alt="Сельхозмаркет"
+                className="h-10 w-auto"
+              />
             </div>
 
             <nav className="hidden md:flex items-center gap-1">
@@ -643,13 +637,12 @@ export default function Index() {
       <footer className="border-t border-border bg-background py-8">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
-            <div className="flex items-center gap-3">
-              <div className="w-6 h-6 bg-primary flex items-center justify-center">
-                <Icon name="Wheat" size={12} className="text-primary-foreground" />
-              </div>
-              <span className="font-oswald text-sm font-bold tracking-widest uppercase text-muted-foreground">
-                Сельхозмаркет
-              </span>
+            <div className="flex items-center gap-2">
+              <img
+                src="https://cdn.poehali.dev/projects/5d86bdf0-caa1-415e-848e-18fef434f4ad/bucket/87f1421d-7692-4f08-bbf7-8eb2f53e964b.png"
+                alt="Сельхозмаркет"
+                className="h-8 w-auto opacity-70"
+              />
             </div>
             <div className="font-mono text-xs text-muted-foreground">
               © 2024 Сельхозмаркет. Все права защищены.
