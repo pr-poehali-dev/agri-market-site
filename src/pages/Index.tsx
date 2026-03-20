@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Icon from "@/components/ui/icon";
 
-const HERO_IMAGE = "https://cdn.poehali.dev/projects/5d86bdf0-caa1-415e-848e-18fef434f4ad/files/1e834251-c036-4cf5-8563-ba699058664c.jpg";
+const HERO_IMAGE = "https://cdn.poehali.dev/projects/5d86bdf0-caa1-415e-848e-18fef434f4ad/files/d85afa8b-fb75-4899-9d7d-dbe0af1e8dba.jpg";
 
 const CATEGORIES = [
   {
