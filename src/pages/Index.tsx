@@ -84,9 +84,48 @@ const DELIVERY_ITEMS = [
   },
 ];
 
-const SECTIONS = ["Каталог", "О компании", "Доставка", "Контакты"];
-type ActiveSection = "catalog" | "about" | "delivery" | "contacts";
-const sectionKeys: ActiveSection[] = ["catalog", "about", "delivery", "contacts"];
+const NEWS = [
+  {
+    date: "15 марта 2026",
+    tag: "Ассортимент",
+    title: "Расширение склада подшипников",
+    text: "Увеличили складской запас подшипников SKF, NSK и FAG. Теперь более 2500 позиций в наличии с отгрузкой в день заказа.",
+  },
+  {
+    date: "02 марта 2026",
+    tag: "Доставка",
+    title: "Новые маршруты доставки на юг России",
+    text: "Открыли регулярные рейсы в Краснодар, Ростов-на-Дону и Ставрополь. Срок доставки сократился до 1–2 рабочих дней.",
+  },
+  {
+    date: "18 февраля 2026",
+    tag: "Партнёрство",
+    title: "Официальный дилер Ростсельмаш",
+    text: "Получили статус официального дилера Ростсельмаш. Теперь предлагаем оригинальные запчасти для комбайнов и тракторов по заводским ценам.",
+  },
+  {
+    date: "05 февраля 2026",
+    tag: "Акция",
+    title: "Скидки на элеваторное оборудование",
+    text: "До 31 марта действует скидка 10% на нории и транспортёры при заказе от 3 единиц. Уточняйте у менеджера.",
+  },
+  {
+    date: "20 января 2026",
+    tag: "Сервис",
+    title: "Запустили онлайн-подбор запчастей",
+    text: "Теперь можно отправить фото или артикул детали в WhatsApp — менеджер подберёт аналог и сообщит о наличии в течение 30 минут.",
+  },
+  {
+    date: "10 января 2026",
+    tag: "Итоги",
+    title: "Итоги 2025 года",
+    text: "Выполнили более 4200 заказов, отгрузили 12 000+ единиц товара. Благодарим клиентов за доверие и продолжаем расти.",
+  },
+];
+
+const SECTIONS = ["Каталог", "О компании", "Доставка", "Новости", "Контакты"];
+type ActiveSection = "catalog" | "about" | "delivery" | "news" | "contacts";
+const sectionKeys: ActiveSection[] = ["catalog", "about", "delivery", "news", "contacts"];
 
 const SEND_URL = "https://functions.poehali.dev/081c3efa-2058-4ed1-993b-baeed7945302";
 
@@ -583,6 +622,61 @@ export default function Index() {
         </div>
       </section>
 
+      {/* NEWS */}
+      <section id="news" className="py-20 bg-background border-t border-border">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
+          <div className="mb-12">
+            <div className="flex items-center gap-3 mb-3">
+              <div className="h-px w-8 bg-primary" />
+              <span className="font-mono text-xs text-primary tracking-widest uppercase">Актуально</span>
+            </div>
+            <h2 className="font-oswald text-4xl sm:text-5xl font-bold uppercase">
+              Новости<br />
+              <span
+                style={{
+                  background: "linear-gradient(135deg, #fbbf24 0%, #f59e0b 50%, #d97706 100%)",
+                  WebkitBackgroundClip: "text",
+                  WebkitTextFillColor: "transparent",
+                  backgroundClip: "text",
+                }}
+              >
+                и события
+              </span>
+            </h2>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {NEWS.map((item, i) => (
+              <div key={i} className="border border-border bg-card flex flex-col">
+                <div className="p-6 flex-1">
+                  <div className="flex items-center gap-3 mb-4">
+                    <span className="font-mono text-[10px] text-primary uppercase tracking-widest border border-primary/30 bg-primary/5 px-2 py-0.5">
+                      {item.tag}
+                    </span>
+                    <span className="font-mono text-[10px] text-muted-foreground">{item.date}</span>
+                  </div>
+                  <h3 className="font-oswald text-lg font-bold uppercase tracking-wide mb-3 leading-snug">
+                    {item.title}
+                  </h3>
+                  <p className="font-ibm text-sm text-muted-foreground leading-relaxed">
+                    {item.text}
+                  </p>
+                </div>
+                <div className="border-t border-border px-6 py-3">
+                  <button
+                    onClick={() => scrollTo("contacts")}
+                    className="font-mono text-xs text-primary hover:text-amber-500 transition-colors uppercase tracking-wider flex items-center gap-1"
+                  >
+                    Узнать подробнее
+                    <Icon name="ArrowRight" size={12} />
+                  </button>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* CONTACTS */}
       <section id="contacts" className="py-20 bg-card border-t border-border">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
@@ -755,10 +849,10 @@ export default function Index() {
               © 2024 Сельхозмаркет. Все права защищены.
             </div>
             <div className="flex items-center gap-4">
-              {["Каталог", "Доставка", "Контакты"].map((link, i) => (
+              {["Каталог", "Доставка", "Новости", "Контакты"].map((link, i) => (
                 <button
                   key={link}
-                  onClick={() => scrollTo(["catalog", "delivery", "contacts"][i] as ActiveSection)}
+                  onClick={() => scrollTo(["catalog", "delivery", "news", "contacts"][i] as ActiveSection)}
                   className="font-mono text-xs text-muted-foreground hover:text-foreground transition-colors uppercase tracking-wider"
                 >
                   {link}
