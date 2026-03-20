@@ -176,9 +176,9 @@ export default function Index() {
             </nav>
 
             <div className="hidden md:flex items-center gap-3">
-              <a href="tel:+79092148292" className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors">
+              <a href="tel:+79003018933" className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors">
                 <Icon name="Phone" size={14} />
-                <span className="font-mono">+7 909 214-82-92</span>
+                <span className="font-mono">+7 900 301-89-33</span>
               </a>
               <button
                 onClick={() => scrollTo("contacts")}
@@ -609,8 +609,8 @@ export default function Index() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
             <div className="space-y-4">
               {[
-                { icon: "Phone", label: "Отдел продаж", value: "+7 909 214-82-92", sub: "Пн–Пт 8:00–18:00" },
-                { icon: "Phone", label: "Дополнительный", value: "+7 900 301-89-33", sub: "Пн–Пт 8:00–18:00" },
+                { icon: "Phone", label: "Отдел продаж", value: "+7 900 301-89-33", sub: "Пн–Пт 8:00–18:00" },
+                { icon: "Phone", label: "Дополнительный", value: "+7 909 214-82-92", sub: "Пн–Пт 8:00–18:00" },
                 { icon: "Mail", label: "Email", value: "selxozmarket36@mail.ru", sub: "Ответ в течение 2 часов" },
                 { icon: "MapPin", label: "Офис", value: "г. Воронеж, пр. Патриотов, 63 корп. 2", sub: "Пн–Пт 8:00–18:00" },
               ].map((item) => (
