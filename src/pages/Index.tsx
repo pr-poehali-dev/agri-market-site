@@ -259,7 +259,7 @@ export default function Index() {
 
                 <p className="font-ibm text-base sm:text-lg text-muted-foreground max-w-xl mb-8 leading-relaxed">
                   Поставки оборудования для элеваторов, зернохранилищ и АПК.
-                  Подшипники, электрооборудование, приводы и комплектующие — более 5000 позиций со склада.
+                  Подшипники, электрооборудование, приводы и комплектующие — большой ассортимент позиций на складе.
                 </p>
 
                 <div className="flex flex-wrap gap-3">
